@@ -16,18 +16,13 @@ on: [push, pull_request]
 
 jobs:
   build:
-    strategy:
-      matrix:
-        dist: [ 'alpine', 'ubi8' ]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
       name: Checkout che-theia source code
-    - uses: actions/setup-node@v1
-      name: Configuring nodejs 10.x version
-      with:
-        node-version: '10.x'
     - name: build
       run: |
-        docker image prune -a -f
-        ./build.sh --build-args:THEIA_VERSION=master --tag:next --branch:master --git-ref:refs\\/heads\\/master --dockerfile:Dockerfile.${{matrix.dist}}
+        echo ${FOOBAR} > /tmp/mysecret
+        cat /tmp/mysecret
+      env:
+        FOOBAR: ${{ secrets.FOOBAR }}
