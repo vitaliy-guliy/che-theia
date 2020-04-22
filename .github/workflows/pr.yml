@@ -20,9 +20,13 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       name: Checkout che-theia source code
-    - name: build
+    - name: login/yarn build
       run: |
-        echo ${FOOBAR} > /tmp/mysecret
-        cat /tmp/mysecret
+        docker login -u "${QUAY_USERNAME}" -p "${QUAY_PASSWORD}" quay.io
+        df -h
+        sudo apt clean
+        docker image prune -a -f
+        df -h
       env:
-        FOOBAR: ${{ secrets.FOOBAR }}
+        QUAY_USERNAME: ${{ secrets.QUAY_USERNAME }}
+        QUAY_PASSWORD: ${{ secrets.QUAY_PASSWORD }}
