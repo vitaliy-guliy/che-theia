@@ -23,7 +23,7 @@ export namespace CheWorkspaceCommands {
         id: 'che.openWorkspace',
         category: FILE_CATEGORY,
         label: 'Open Workspace...'
-    }
+    };
     export const OPEN_RECENT_WORKSPACE: Command = {
         id: 'che.openRecentWorkspace',
         category: FILE_CATEGORY,
@@ -44,7 +44,7 @@ export class CheWorkspaceContribution implements CommandContribution, MenuContri
     registerCommands(commands: CommandRegistry): void {
         commands.registerCommand(CheWorkspaceCommands.OPEN_WORKSPACE, {
             execute: () => this.workspaceController.openWorkspace()
-        })
+        });
         commands.registerCommand(CheWorkspaceCommands.OPEN_RECENT_WORKSPACE, {
             execute: () => this.workspaceController.openRecentWorkspace()
         });
